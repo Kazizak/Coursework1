@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <img style="width: 100px;"v-bind:src="lesson.image">
+        <div style="text-align: left;">
+            <h1>Lesson: {{lesson.subject}}</h1>
+            <h2>Campus: {{lesson.campus}}</h2>
+            <h2>Price: {{lesson.price}}</h2>
+            <h2>Spaces: {{lesson.spaces}}</h2>
+            <button @click='addItem' :disabled='!isAvailable'>Add Lesson</button>
+        </div>      
+    </div>
+    
+    </body>
+
+    <script>
+        let app = new Vue({
+            el: '#app',
+            data:[
+              {
+                subject: "Maths",
+                campus: "London",
+                price: "£100",
+                spaces: 5,
+                image: "images/maths.png"
+              },
+              {
+                  subject : "Economics",
+                  campus : "Leeds",
+                  price: "£95",
+                  spaces : 5,
+                  image :"images/maths.png"
+              },
+              {
+                  subject : "Computer Science",
+                  campus : "Toronto",
+                  price: "£115",
+                  spaces : 5,
+                  image :"images/maths.png"
+              },
+              {
+                  subject : "Data Science",
+                  campus : "Mauritius",
+                  price: "£99",
+                  spaces : 5,
+                  image :"images/maths.png"
+              },
+              {
+                  subject : "Data Representation",
+                  campus : "North Hampton",
+                  price: "£85",
+                  spaces : 5,
+                  image :"images/maths.png"
+              },
+              {
+                  subject : "Chemistry",
+                  campus : "Lonodn",
+                  price: "£125",
+                  spaces : 5,
+                  image :"images/maths.png"
+              }
+
+            ],
+            methods: {
+              addItem(){
+                
+              }
+            },
+      
+            computed: {
+              isAvailable(){
+                return this.lesson.spaces != 0
+              }
+            }
+        }) 
+      </script>
+</html>
