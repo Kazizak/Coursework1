@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- <link rel="stylesheet" href="styles.css"> -->
   
   <script src="https://unpkg.com/vue"></script>
 </head>
@@ -14,6 +13,9 @@
 
   <div id="nav">this will be the nav</div>
   <div id="sort_panel">pannel option for sorting preference</div>
+  <div id="shopping_cart">
+    <input type = "button" value="Shopping Cart" :disabled="len" @click="show_cart">
+  </div>
   <div id="subjects">
     <div id="app">
       <!-- <img style="width: 100px;"v-bind:src="lesson.image"> -->
@@ -26,13 +28,14 @@
       </div>
     </div>
   </div>
-  <div id="cart"></div>
+
   <div id="checkout"></div>
 
 </body>
 
 <script>
-  let app = new Vue(
+  //Vue for showing rendering all the lessons in the page
+  let app1 = new Vue(
     {
       el: '#app',
       data:
@@ -97,17 +100,22 @@
 
       },
       methods: {
-        
+        //function to add items to the cart
         add_to_cart(id_p) {
           
           for(i=0; i<this.courses.length;i++)
           {
             if(this.courses[i].id === id_p)
             {
+              //pushing items to the cart array
               this.cart.push(this.courses[i]);
+              //enabling the shopping cart button(as atleast one course is added at this point)
+              app2.len = false;
+              
               if(this.courses[i].spaces > 0)
                 {
                   --this.courses[i].spaces;
+                  //disabling the add to art button if spaces run out
                   if(this.courses[i].spaces === 0){
                   this.courses[i].A_D = true;
                 }                               
@@ -119,6 +127,21 @@
       }
 
 
+    })
+
+    let app2 = new Vue({
+      el:'#shopping_cart',
+      data: 
+      {
+        cart_final : app1.cart,
+        len : true,
+      },
+      methods:{
+        show_cart ()
+        {
+          console.log("disbale the app1 and show the shopping cart");
+        }
+      }
     })
 </script>
 
