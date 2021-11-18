@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  
+  <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/vue"></script>
 </head>
 
@@ -14,7 +14,7 @@
   <div id="nav">this will be the nav</div>
   <div id="sort_panel">pannel option for sorting preference</div>
   <div id="shopping_cart">
-    <input type = "button" value="Shopping Cart" :disabled="len" @click="show_cart">
+    <input type="button" value="Shopping Cart" :disabled="len" @click="show_cart">
   </div>
   <div id="subjects">
     <div id="app">
@@ -24,7 +24,7 @@
         <p>{{course.campus}}</p>
         <p>{{course.price}}</p>
         <p>{{course.spaces}}</p>
-        <input type="button" value="Add To Cart" :disabled="course.A_D" @click ="add_to_cart(course.id)">
+        <input type="button" value="Add To Cart" :disabled="course.A_D" @click="add_to_cart(course.id)">
       </div>
     </div>
   </div>
@@ -40,87 +40,84 @@
       el: '#app',
       data:
       {
-        
+
         courses: [
           {
-            id : 1001,
+            id: 1001,
             subject: "Maths",
             campus: "London",
             price: "£100",
             spaces: 5,
-            A_D : false
+            A_D: false
             // image: "images/maths.png"
           },
           {
-            id : 1002,
+            id: 1002,
             subject: "Economics",
             campus: "Leeds",
             price: "£95",
             spaces: 5,
-            A_D : false
+            A_D: false
             // image :"images/maths.png"
           },
           {
-            id : 1003,
+            id: 1003,
             subject: "Computer Science",
             campus: "Toronto",
             price: "£115",
             spaces: 5,
-            A_D : false
+            A_D: false
             // image :"images/maths.png"
           },
           {
-            id : 1004,
+            id: 1004,
             subject: "Data Science",
             campus: "Mauritius",
             price: "£99",
             spaces: 5,
-            A_D : false
+            A_D: false
             //   image :"images/maths.png"
           },
           {
-            id : 1005,
+            id: 1005,
             subject: "Data Representation",
             campus: "North Hampton",
             price: "£85",
             spaces: 5,
-            A_D : false
+            A_D: false
             //  image :"images/maths.png"
           },
           {
-            id : 1006,
+            id: 1006,
             subject: "Chemistry",
             campus: "Lonodn",
             price: "£125",
             spaces: 5,
-            A_D : false,
+            A_D: false,
             // image: "images/maths.png"
           }],
-          cart:[]
+        cart: []
 
       },
       methods: {
         //function to add items to the cart
         add_to_cart(id_p) {
-          
-          for(i=0; i<this.courses.length;i++)
-          {
-            if(this.courses[i].id === id_p)
-            {
+
+          for (i = 0; i < this.courses.length; i++) {
+            if (this.courses[i].id === id_p) {
               //pushing items to the cart array
-              this.cart.push(this.courses[i]);
+              this.cart.push(this.courses[i].id);
               //enabling the shopping cart button(as atleast one course is added at this point)
               app2.len = false;
-              
-              if(this.courses[i].spaces > 0)
-                {
-                  --this.courses[i].spaces;
-                  //disabling the add to art button if spaces run out
-                  if(this.courses[i].spaces === 0){
+
+              if (this.courses[i].spaces > 0) {
+                --this.courses[i].spaces;
+                //disabling the add to art button if spaces run out
+                if (this.courses[i].spaces === 0) {
                   this.courses[i].A_D = true;
-                }                               
                 }
-                
+              }
+
             }
           }
         }
@@ -129,20 +126,22 @@
 
     })
 
-    let app2 = new Vue({
-      el:'#shopping_cart',
-      data: 
-      {
-        cart_final : app1.cart,
-        len : true,
-      },
-      methods:{
-        show_cart ()
-        {
-          console.log("disbale the app1 and show the shopping cart");
-        }
+  let app2 = new Vue({
+    el: '#shopping_cart',
+    data:
+    {
+      //copying the cart data from app1
+      cart_final: app1.cart,
+      //variable to control the disabling and enabling the shopping cart button
+      len: true,
+    },
+    methods: {
+      //function to show all the items that is added to the shopping cart
+      show_cart() {
+        console.log("disbale the app1 and show the shopping cart");
       }
-    })
+    }
+  })
 </script>
 
 </html>
