@@ -1,84 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://unpkg.com/vue"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- <link rel="stylesheet" href="styles.css"> -->
+  
+  <script src="https://unpkg.com/vue"></script>
 </head>
+
 <body>
+
+  <div id="nav">this will be the nav</div>
+  <div id="sort_panel">pannel option for sorting preference</div>
+  <div id="subjects">
     <div id="app">
-        <img style="width: 100px;"v-bind:src="lesson.image">
-        <div style="text-align: left;">
-            <h1>Lesson: {{lesson.subject}}</h1>
-            <h2>Campus: {{lesson.campus}}</h2>
-            <h2>Price: {{lesson.price}}</h2>
-            <h2>Spaces: {{lesson.spaces}}</h2>
-            <button @click='addItem' :disabled='!isAvailable'>Add Lesson</button>
-        </div>      
+      <!-- <img style="width: 100px;"v-bind:src="lesson.image"> -->
+      <div v-for="course in courses">
+        <h1>{{course.subject}}</h1>
+        <p>{{course.campus}}</p>
+        <p>{{course.price}}</p>
+        <p>{{course.spaces}}</p>
+        <input type="button" value="Add To Cart" :disabled="course.A_D" @click ="add_to_cart(course.id)">
+      </div>
     </div>
-    
-    </body>
+  </div>
+  <div id="cart"></div>
+  <div id="checkout"></div>
 
-    <script>
-        let app = new Vue({
-            el: '#app',
-            data:[
-              {
-                subject: "Maths",
-                campus: "London",
-                price: "£100",
-                spaces: 5,
-                image: "images/maths.png"
-              },
-              {
-                  subject : "Economics",
-                  campus : "Leeds",
-                  price: "£95",
-                  spaces : 5,
-                  image :"images/maths.png"
-              },
-              {
-                  subject : "Computer Science",
-                  campus : "Toronto",
-                  price: "£115",
-                  spaces : 5,
-                  image :"images/maths.png"
-              },
-              {
-                  subject : "Data Science",
-                  campus : "Mauritius",
-                  price: "£99",
-                  spaces : 5,
-                  image :"images/maths.png"
-              },
-              {
-                  subject : "Data Representation",
-                  campus : "North Hampton",
-                  price: "£85",
-                  spaces : 5,
-                  image :"images/maths.png"
-              },
-              {
-                  subject : "Chemistry",
-                  campus : "Lonodn",
-                  price: "£125",
-                  spaces : 5,
-                  image :"images/maths.png"
-              }
+</body>
 
-            ],
-            methods: {
-              addItem(){
+<script>
+  let app = new Vue(
+    {
+      el: '#app',
+      data:
+      {
+        
+        courses: [
+          {
+            id : 1001,
+            subject: "Maths",
+            campus: "London",
+            price: "£100",
+            spaces: 5,
+            A_D : false
+            // image: "images/maths.png"
+          },
+          {
+            id : 1002,
+            subject: "Economics",
+            campus: "Leeds",
+            price: "£95",
+            spaces: 5,
+            A_D : false
+            // image :"images/maths.png"
+          },
+          {
+            id : 1003,
+            subject: "Computer Science",
+            campus: "Toronto",
+            price: "£115",
+            spaces: 5,
+            A_D : false
+            // image :"images/maths.png"
+          },
+          {
+            id : 1004,
+            subject: "Data Science",
+            campus: "Mauritius",
+            price: "£99",
+            spaces: 5,
+            A_D : false
+            //   image :"images/maths.png"
+          },
+          {
+            id : 1005,
+            subject: "Data Representation",
+            campus: "North Hampton",
+            price: "£85",
+            spaces: 5,
+            A_D : false
+            //  image :"images/maths.png"
+          },
+          {
+            id : 1006,
+            subject: "Chemistry",
+            campus: "Lonodn",
+            price: "£125",
+            spaces: 5,
+            A_D : false,
+            // image: "images/maths.png"
+          }],
+          cart:[]
+
+      },
+      methods: {
+        
+        add_to_cart(id_p) {
+          
+          for(i=0; i<this.courses.length;i++)
+          {
+            if(this.courses[i].id === id_p)
+            {
+              this.cart.push(this.courses[i]);
+              if(this.courses[i].spaces > 0)
+                {
+                  --this.courses[i].spaces;
+                  if(this.courses[i].spaces === 0){
+                  this.courses[i].A_D = true;
+                }                               
+                }
                 
-              }
-            },
-      
-            computed: {
-              isAvailable(){
-                return this.lesson.spaces != 0
-              }
             }
-        }) 
-      </script>
+          }
+        }
+      }
+
+
+    })
+</script>
+
 </html>
