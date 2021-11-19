@@ -7,29 +7,46 @@
   <title>Document</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/vue"></script>
+  <script src="products.js"></script>
 </head>
 
 <body>
 
-  <div id="nav">this will be the nav</div>
+  <div id="nav"><h1>CLASS BOOKING SYSTEM</h1></div>
   <div id="sort_panel">pannel option for sorting preference</div>
-  <div id="shopping_cart">
-    <input type="button" value="Shopping Cart" :disabled="len" @click="show_cart">
-  </div>
-  <div id="subjects">
-    <div id="app">
+
+    
+    <div id="app" >
+
+      <input type="button" value="Shopping Cart" :disabled="len" @click="show_cart">
       <!-- <img style="width: 100px;"v-bind:src="lesson.image"> -->
-      <div v-for="course in courses">
-        <h1>{{course.subject}}</h1>
-        <p>{{course.campus}}</p>
-        <p>{{course.price}}</p>
-        <p>{{course.spaces}}</p>
+      <div v-if="show_product">
+      <div v-for="course in courses" >
+
+        <h1>Subject : {{course.subject}}</h1>
+        <p>Campus : {{course.campus}}</p>
+        <p>Price : {{course.price}}</p>
+        <p>Available Spaces : {{course.spaces}}</p>
         <input type="button" value="Add To Cart" :disabled="course.A_D" @click="add_to_cart(course.id)">
+      </div>
+      </div>
+
+
+
+      <!-- The checout page starts here -->
+
+
+      <div id="checkout" v-else >
+        <div v-for="c in cart" >
+              <h>{{c.subject}}</h>
+              <p>{{c.campus}}</p>
+              <p>{{c.price}}</p>
+              <input type="button" value="Remove" @click="remove_from_cart(c.id)">
       </div>
     </div>
   </div>
 
-  <div id="checkout"></div>
+  
 
 </body>
 
@@ -40,64 +57,10 @@
       el: '#app',
       data:
       {
-
-        courses: [
-          {
-            id: 1001,
-            subject: "Maths",
-            campus: "London",
-            price: "£100",
-            spaces: 5,
-            A_D: false
-            // image: "images/maths.png"
-          },
-          {
-            id: 1002,
-            subject: "Economics",
-            campus: "Leeds",
-            price: "£95",
-            spaces: 5,
-            A_D: false
-            // image :"images/maths.png"
-          },
-          {
-            id: 1003,
-            subject: "Computer Science",
-            campus: "Toronto",
-            price: "£115",
-            spaces: 5,
-            A_D: false
-            // image :"images/maths.png"
-          },
-          {
-            id: 1004,
-            subject: "Data Science",
-            campus: "Mauritius",
-            price: "£99",
-            spaces: 5,
-            A_D: false
-            //   image :"images/maths.png"
-          },
-          {
-            id: 1005,
-            subject: "Data Representation",
-            campus: "North Hampton",
-            price: "£85",
-            spaces: 5,
-            A_D: false
-            //  image :"images/maths.png"
-          },
-          {
-            id: 1006,
-            subject: "Chemistry",
-            campus: "Lonodn",
-            price: "£125",
-            spaces: 5,
-            A_D: false,
-            // image: "images/maths.png"
-          }],
-        cart: []
-
+        courses:courses,
+        show_product : true,
+        cart: [],
+        len: true    
       },
       methods: {
         //function to add items to the cart
@@ -106,9 +69,9 @@
           for (i = 0; i < this.courses.length; i++) {
             if (this.courses[i].id === id_p) {
               //pushing items to the cart array
-              this.cart.push(this.courses[i].id);
+              this.cart.push(this.courses[i]);
               //enabling the shopping cart button(as atleast one course is added at this point)
-              app2.len = false;
+              this.len = false;
 
               if (this.courses[i].spaces > 0) {
                 --this.courses[i].spaces;
@@ -120,28 +83,41 @@
 
             }
           }
+        },
+        show_cart() {
+        if(this.show_product === true)
+        {
+          this.show_product = false;
+        }
+        else{
+        this.show_product = true;
+        }
+        
+        },
+        remove_from_cart(id_p){
+          console.log(id_p);
+          for(i=0; i<this.cart.length;i++)
+          {
+            if(this.cart[i].id == id_p)
+            {
+              this.cart.splice(i,1);
+            }
+          }
+          for(i=0; i<courses.length;i++)
+          {
+            if(courses[i].id == id_p)
+            {
+              ++courses[i].spaces;
+            }
+          }
+          if(this.cart.length == 0)
+          {
+            this.len = true;
+            this.show_product = true;
+          }
         }
       }
-
-
-    })
-
-  let app2 = new Vue({
-    el: '#shopping_cart',
-    data:
-    {
-      //copying the cart data from app1
-      cart_final: app1.cart,
-      //variable to control the disabling and enabling the shopping cart button
-      len: true,
-    },
-    methods: {
-      //function to show all the items that is added to the shopping cart
-      show_cart() {
-        console.log("disbale the app1 and show the shopping cart");
-      }
-    }
-  })
+      })
 </script>
 
 </html>
