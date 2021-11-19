@@ -172,11 +172,13 @@
           for (i = 0; i < courses.length; i++) {
             if (courses[i].id == id_p) {
               ++courses[i].spaces;
+                courses[i].A_D = false;
             }
           }
           if (this.cart.length == 0) {
             this.len = false;
             this.show_product = true;
+            this.hideit = true;
           }
         },
         place_my_order() {
