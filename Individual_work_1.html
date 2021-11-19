@@ -17,7 +17,7 @@
   </div>
   <div id="app">
     <!-- div containing the options to sort items in the website -->
-    <div id="sort_panel">
+    <div id="sort_panel" v-show="hideit">
       <Strong>SORTING OPTIONS</Strong>
       <select v-model="sorty.type">
         <option value="">Default</option>
@@ -36,9 +36,10 @@
       <br><br><br>
       <input type="button" value="SORT" @click="sort_array">
     </div>
+    <div v-show="hideit">
     <strong>Search</strong>
     <input type="text" v-model="search_term"><br><br>
-
+  </div>
     <!-- button for the shopping cart -->
     <input type="button" value="Shopping Cart" v-show="len" @click="show_cart">
     <!-- displaying products in the webpage -->
@@ -89,6 +90,7 @@
       el: '#app',
       data:
       {
+        hideit : true,
         search_term: '',
         courses: courses,
         show_product: true,
@@ -154,9 +156,11 @@
           console.log(this.show_product);
           if (this.show_product === true) {
             this.show_product = false;
+            this.hideit = false;
           }
           else {
             this.show_product = true;
+            this.hideit = true;
           }
         },
         remove_from_cart(id_p) {
