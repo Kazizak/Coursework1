@@ -1,45 +1,45 @@
 let courses= [
     {
-      id: 0,
+      id: 1,
       subject: "Maths",
       campus: "London",
-      price: "£100",
+      price: 100,
       spaces: 5,
       A_D: false
       // image: "images/maths.png"
     },
     {
-      id: 1,
+      id: 2,
       subject: "Economics",
       campus: "Leeds",
-      price: "£95",
+      price: 95,
       spaces: 5,
       A_D: false
       // image :"images/maths.png"
     },
     {
       id: 3,
-      subject: "Computer Science",
+      subject: "Computer",
       campus: "Toronto",
-      price: "£115",
+      price: 115,
       spaces: 5,
       A_D: false
       // image :"images/maths.png"
     },
     {
       id: 4,
-      subject: "Data Science",
+      subject: "English",
       campus: "Mauritius",
-      price: "£99",
+      price: 99,
       spaces: 5,
       A_D: false
       //   image :"images/maths.png"
     },
     {
       id: 5,
-      subject: "Data Representation",
-      campus: "North Hampton",
-      price: "£85",
+      subject: "Media",
+      campus: "Hampton",
+      price: 85,
       spaces: 5,
       A_D: false
       //  image :"images/maths.png"
@@ -48,8 +48,45 @@ let courses= [
       id: 6,
       subject: "Chemistry",
       campus: "Lonodn",
-      price: "£125",
+      price: 125,
       spaces: 5,
       A_D: false,
       // image: "images/maths.png"
-    }]
+    },
+    {
+      id: 7,
+      subject: "Biology",
+      campus: "Hampton",
+      price: 135,
+      spaces: 5,
+      A_D: false,
+      // image: "images/maths.png"
+    },
+    {
+      id: 8,
+      subject: "Literature",
+      campus: "Oxford",
+      price: 89,
+      spaces: 5,
+      A_D: false,
+      // image: "images/maths.png"
+    },
+    {
+      id: 9,
+      subject: "Music",
+      campus: "Cambridge",
+      price: 99,
+      spaces: 5,
+      A_D: false,
+      // image: "images/maths.png"
+    },
+    {
+      id: 10,
+      subject: "Accounting",
+      campus: "Lonodn",
+      price: 150,
+      spaces: 5,
+      A_D: false,
+      // image: "images/maths.png"
+    }
+  ]
