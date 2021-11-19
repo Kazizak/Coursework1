@@ -18,8 +18,7 @@
     
     <div id="app" >
 
-      <strong>Search</strong>
-          <input type="text" v-model="search_term"><br><br>
+      
 
       <!-- div containing the options to sort items in the website -->
       <div id="sort_panel">
@@ -43,6 +42,8 @@
         <br>
         <input type="button" value="SORT" @click="sort_array">
       </div>
+      <strong>Search</strong>
+          <input type="text" v-model="search_term"><br><br>
 
       <!-- button for the shopping cart -->
       <input type="button" value="Shopping Cart" v-show="len" @click="show_cart">
@@ -50,12 +51,14 @@
       <!-- displaying products in the webpage -->
       <div v-if="show_product">
       <div v-for="course in filtered_courses" :id="course.id" >
-
+        <div id="course_templates">
+          <img style="width: 100px; height:100px;"v-bind:src="course.image">
         <h1>Subject : {{course.subject}}</h1>
         <p>Campus : {{course.campus}}</p>
         <p>Price : {{course.price}}</p>
         <p>Available Spaces : {{course.spaces}}</p>
         <input type="button" value="Add To Cart" :disabled="course.A_D" @click="add_to_cart(course.id)">
+      </div>
       </div>
       </div>
 

@@ -5,8 +5,8 @@ let courses= [
       campus: "London",
       price: 100,
       spaces: 5,
-      A_D: false
-      // image: "images/maths.png"
+      A_D: false,
+      image: "images/math.png"
     },
     {
       id: 2,
@@ -14,8 +14,8 @@ let courses= [
       campus: "Leeds",
       price: 95,
       spaces: 5,
-      A_D: false
-      // image :"images/maths.png"
+      A_D: false,
+      image :"images/economics.png"
     },
     {
       id: 3,
@@ -23,8 +23,8 @@ let courses= [
       campus: "Toronto",
       price: 115,
       spaces: 5,
-      A_D: false
-      // image :"images/maths.png"
+      A_D: false,
+      image :"images/computer.png"
     },
     {
       id: 4,
@@ -32,8 +32,8 @@ let courses= [
       campus: "Mauritius",
       price: 99,
       spaces: 5,
-      A_D: false
-      //   image :"images/maths.png"
+      A_D: false,
+        image :"images/english.png"
     },
     {
       id: 5,
@@ -41,8 +41,8 @@ let courses= [
       campus: "Hampton",
       price: 85,
       spaces: 5,
-      A_D: false
-      //  image :"images/maths.png"
+      A_D: false,
+       image :"images/media.png"
     },
     {
       id: 6,
@@ -51,7 +51,7 @@ let courses= [
       price: 125,
       spaces: 5,
       A_D: false,
-      // image: "images/maths.png"
+      image: "images/chemistry.png"
     },
     {
       id: 7,
@@ -60,7 +60,7 @@ let courses= [
       price: 135,
       spaces: 5,
       A_D: false,
-      // image: "images/maths.png"
+      image: "images/biology.png"
     },
     {
       id: 8,
@@ -69,7 +69,7 @@ let courses= [
       price: 89,
       spaces: 5,
       A_D: false,
-      // image: "images/maths.png"
+      image: "images/literature.png"
     },
     {
       id: 9,
@@ -78,7 +78,7 @@ let courses= [
       price: 99,
       spaces: 5,
       A_D: false,
-      // image: "images/maths.png"
+      image: "images/music.png"
     },
     {
       id: 10,
@@ -87,6 +87,6 @@ let courses= [
       price: 150,
       spaces: 5,
       A_D: false,
-      // image: "images/maths.png"
+      image: "images/accounting.png"
     }
   ]
